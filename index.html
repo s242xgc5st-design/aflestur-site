@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+  <meta charset="UTF-8">
+  <title>Aflestur.is – Aflestur ökurita og ökuritakorta</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aflestur.is sérhæfir sig í aflestri ökurita og ökuritakorta, ásamt öruggri varðveislu gagna fyrir fyrirtæki og einstaklinga.">
+  <style>
+    :root {
+      --primary: #14213d;
+      --accent:  #f97316;
+      --light:   #ffffff;
+      --muted:   #e5e7eb;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #111827;
+      background: #f3f4f6;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      background: var(--primary);
+      color: var(--light);
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.95rem;
+    }
+
+    .logo span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      opacity: 0.9;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    .hero {
+      margin-top: 1.5rem;
+      background: linear-gradient(135deg, var(--primary) 0%, #1f2937 55%, #111827 100%);
+      color: var(--light);
+      border-radius: 0.75rem;
+      padding: 2.5rem 2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero p.lead {
+      font-size: 1.05rem;
+      opacity: 0.95;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-list {
+      list-style: none;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-list li::before {
+      content: "•";
+      color: var(--accent);
+      font-weight: bold;
+      display: inline-block;
+      width: 1rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn-primary, .btn-secondary {
+      border-radius: 999px;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #1f2937;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--light);
+      border: 1px solid rgba(249, 115, 22, 0.5);
+    }
+
+    .hero-aside {
+      background: rgba(17, 24, 39, 0.8);
+      border-radius: 0.75rem;
+      padding: 1.4rem 1.2rem;
+      border: 1px solid rgba(249, 115, 22, 0.4);
+      font-size: 0.9rem;
+    }
+
+    .hero-aside h2 {
+      font-size: 1.05rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+    }
+
+    .hero-aside p {
+      margin-bottom: 0.4rem;
+      opacity: 0.95;
+    }
+
+    .hero-aside strong {
+      color: var(--light);
+    }
+
+    section {
+      margin-top: 2.5rem;
+      background: #ffffff;
+      border-radius: 0.75rem;
+      padding: 1.75rem 1.5rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+    }
+
+    section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      color: #111827;
+    }
+
+    section p {
+      margin-bottom: 0.75rem;
+      font-size: 0.98rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.75rem;
+    }
+
+    .card {
+      border-radius: 0.75rem;
+      border: 1px solid #e5e7eb;
+      padding: 1.25rem 1.2rem;
+      background: #f9fafb;
+      font-size: 0.94rem;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+      color: #111827;
+    }
+
+    .card ul {
+      margin-left: 1.1rem;
+      margin-top: 0.35rem;
+    }
+
+    .card ul li {
+      margin-bottom: 0.25rem;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .price-card {
+      border-radius: 0.75rem;
+      padding: 1.25rem 1.2rem;
+      background: #f97316;
+      color: #111827;
+      font-size: 0.96rem;
+      font-weight: 500;
+    }
+
+    .price-card strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .price-note {
+      margin-top: 0.9rem;
+      font-size: 0.85rem;
+      color: #4b5563;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 1.75rem;
+    }
+
+    form {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    input, textarea {
+      width: 100%;
+      border-radius: 0.5rem;
+      border: 1px solid #d1d5db;
+      padding: 0.55rem 0.65rem;
+      font-size: 0.95rem;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-info p {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-highlight {
+      margin-top: 0.7rem;
+      padding: 0.9rem 1rem;
+      border-radius: 0.75rem;
+      background: #fef3c7;
+      font-size: 0.88rem;
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      background: #0b1220;
+      color: #e5e7eb;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      font-size: 0.88rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-inner a {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 1.9rem 1.5rem;
+      }
+      .split,
+      .contact-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+      header {
+        position: static;
+      }
+      .nav-links {
+        display: none;
+      }
+      main {
+        padding: 1.2rem;
+      }
+      section {
+        padding: 1.5rem 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">
+      <span class="dot"></span> AFLESTUR.IS
+    </div>
+    <nav class="nav-links">
+      <a href="#about">Um þjónustuna</a>
+      <a href="#services">Ökuriti & kort</a>
+      <a href="#pricing">Verðskrá</a>
+      <a href="#contact">Hafa samband</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div>
+      <h1>Aflestur ökurita og ökuritakorta – hratt og rétt.</h1>
+      <p class="lead">
+        Aflestur.is sérhæfir sig í aflestri ökurita og ökuritakorta, ásamt öruggri varðveislu gagna fyrir
+        fyrirtæki og einstaklinga.
+      </p>
+      <ul class="hero-list">
+        <li>Samkvæmt lögum um aksturs- og hvíldartíma.</li>
+        <li>Geymsla gagna á öruggu formi.</li>
+        <li>Skýrslur sendar rafrænt á netfang.</li>
+      </ul>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Panta aflestur</a>
+        <a href="#pricing" class="btn-secondary">Skoða verðskrá</a>
+      </div>
+    </div>
+    <aside class="hero-aside">
+      <h2>Skylda rekstraraðila</h2>
+      <p>
+        Rekstraraðilum er skylt að lesa af ökurita á <strong>90 daga fresti</strong> og hafa gögn aðgengileg í
+        a.m.k. <strong>1 ár</strong>.
+      </p>
+      <p>
+        Aflestur.is sér um aflestur og varðveislu gagna þannig að þú standir skil á
+        öllum lagakröfum án fyrirhafnar.
+      </p>
+    </aside>
+  </section>
+
+  <section id="about">
+    <h2>Um Aflestur.is</h2>
+    <p>
+      Við sérhæfum okkur í aflestri stafrænnar ökuritaskráningar fyrir atvinnurekendur og einstaklinga sem
+      sinna akstri samkvæmt lögum um aksturs- og hvíldartíma. Þú sendir okkur gögnin – við sjáum um aflestur,
+      skýrslur og örugga varðveislu.
+    </p>
+    <p>
+      Þjónustan hentar jafnt smærri fyrirtækjum með fáa bíla sem og stærri rekstri með marga ökumenn.
+    </p>
+  </section>
+
+  <section id="services">
+    <h2>Ökuriti &amp; ökuritakort – hvað er lesið?</h2>
+
+    <div class="split">
+      <div class="card">
+        <h3>Stafrænn ökuriti</h3>
+        <p>Upplýsingar sem ökuritinn skráir þegar ökuritakortið er sett í ökuritann og tekið úr honum:</p>
+        <ul>
+          <li>Akstur, lengd og tími.</li>
+          <li>Hvíldartími.</li>
+          <li>Hraði.</li>
+          <li>Stopp, fjöldi og lengd.</li>
+          <li>Óeðlileg högg og mögulegir árekstrar.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Ökuritakort</h3>
+        <p>Upplýsingar sem vistaðar eru á ökuritakortinu sjálfu:</p>
+        <ul>
+          <li>Akstur, lengd og tími einstakra ökumanna.</li>
+          <li>Hvíldartími og bið.</li>
+          <li>Stopp, fjöldi og lengd.</li>
+        </ul>
+        <p>
+          Við lesum bæði kort einstaklinga og kort ökumanna í þjónustu fyrirtækja.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <h2>Verðskrá</h2>
+    <p>Öll verð eru með virðisaukaskatti (VSK).</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <strong>Ökuriti</strong>
+        Aflestur úr stafrænum ökurita: <br>
+        <strong>6.200 kr. með VSK</strong>
+      </div>
+
+      <div class="price-card">
+        <strong>Ökuritakort</strong>
+        Aflestur ökuritakorts: <br>
+        <strong>620 kr. með VSK</strong>
+      </div>
+
+      <div class="price-card">
+        <strong>Akstur</strong>
+        Úrvinnsla og skýrslugerð fyrir akstur: <br>
+        <strong>3.720 kr. með VSK</strong>
+      </div>
+    </div>
+
+    <p class="price-note">
+      Hægt er að gera sérstaka samninga fyrir reglulegan mánaðarlegan aflestur fyrir fyrirtæki með marga bíla
+      eða ökumenn. Hafðu samband fyrir tilboð.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Hafa samband</h2>
+
+    <div class="contact-grid">
+      <div>
+        <form action="mailto:aflestur@aflestur.is" method="post" enctype="text/plain">
+          <div>
+            <label for="name">Nafn</label>
+            <input type="text" id="name" name="Nafn" required>
+          </div>
+          <div>
+            <label for="company">Fyrirtæki (valkvætt)</label>
+            <input type="text" id="company" name="Fyrirtæki">
+          </div>
+          <div>
+            <label for="phone">Sími</label>
+            <input type="tel" id="phone" name="Sími">
+          </div>
+          <div>
+            <label for="email">Netfang</label>
+            <input type="email" id="email" name="Netfang" required>
+          </div>
+          <div>
+            <label for="message">Skilaboð / fyrirspurn</label>
+            <textarea id="message" name="Skilaboð" placeholder="Segðu okkur stuttlega frá bílum og ökumönnum."></textarea>
+          </div>
+          <div>
+            <button type="submit" class="btn-primary">Senda fyrirspurn</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <p><strong>Netfang:</strong> <a href="mailto:aflestur@aflestur.is">aflestur@aflestur.is</a></p>
+        <p><strong>Sími:</strong> <a href="tel:+3548497127">849-7127</a></p>
+        <p><strong>Vefur:</strong> <a href="https://aflestur.is">aflestur.is</a></p>
+
+        <div class="contact-highlight">
+          Við svörum fyrirspurnum eins fljótt og auðið er og getum oftast afgreitt aflestur
+          <strong>innan 24 klukkustunda</strong> frá því að gögn berast.
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      &copy; <span id="year"></span> Aflestur.is – Aflestur ökurita og ökuritakorta.
+    </div>
+    <div>
+      Rekstraraðili sér um að uppfylla allar kröfur laga um aksturs- og hvíldartíma.
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

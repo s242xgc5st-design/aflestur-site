@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Aflestur.is – Aflestur ökurita og ökuritakorta</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
     :root {
       --navy: #071528;
@@ -22,7 +23,11 @@
       --transition-fast: 0.18s ease-out;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter","Segoe UI", sans-serif;
@@ -31,7 +36,10 @@
       line-height: 1.5;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     /* NAV */
 
@@ -57,11 +65,10 @@
     .nav-brand {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
     }
 
     .nav-logo {
-      height: 40px;          /* STÆRRA LÓGÓ Í HAUSNUM */
+      height: 32px;
       display: block;
     }
 
@@ -88,7 +95,9 @@
       transition: width var(--transition-fast);
     }
 
-    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
 
     /* HERO */
 
@@ -107,7 +116,11 @@
       align-items: center;
     }
 
-    .hero-main { display: flex; flex-direction: column; gap: 1.75rem; }
+    .hero-main {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
 
     .hero-logo-row {
       display: flex;
@@ -116,7 +129,7 @@
     }
 
     .hero-logo {
-      height: 72px;          /* STÆRRA LÓGÓ Í HERO */
+      height: 60px;
       display: block;
     }
 
@@ -167,9 +180,12 @@
       font-weight: 550;
       border: 1px solid transparent;
       cursor: pointer;
-      transition: transform var(--transition-fast),
-        box-shadow var(--transition-fast), background var(--transition-fast),
-        border-color var(--transition-fast), color var(--transition-fast);
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast);
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -215,9 +231,15 @@
       margin-bottom: 0.55rem;
     }
 
-    .hero-aside-text { font-size: 0.9rem; color: #e5e7eb; }
+    .hero-aside-text {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+    }
 
-    .hero-aside-strong { font-weight: 600; color: #fef3c7; }
+    .hero-aside-strong {
+      font-weight: 600;
+      color: #fef3c7;
+    }
 
     /* SECTIONS */
 
@@ -227,7 +249,9 @@
       padding: 2.5rem 1.25rem 0;
     }
 
-    .section:last-of-type { padding-bottom: 3rem; }
+    .section:last-of-type {
+      padding-bottom: 3rem;
+    }
 
     .section-card {
       background: var(--card-bg);
@@ -257,7 +281,9 @@
       font-size: 0.95rem;
     }
 
-    .section-list li { margin-bottom: 0.2rem; }
+    .section-list li {
+      margin-bottom: 0.2rem;
+    }
 
     /* GRID: ÖKURITI & KORT */
 
@@ -289,7 +315,9 @@
 
     /* VERÐSKRÁ */
 
-    .pricing-header { margin-bottom: 1.1rem; }
+    .pricing-header {
+      margin-bottom: 1.1rem;
+    }
 
     .pricing-note {
       font-size: 0.88rem;
@@ -321,11 +349,21 @@
       letter-spacing: 0.08em;
     }
 
-    .price-desc { font-size: 0.9rem; margin-bottom: 0.3rem; }
+    .price-desc {
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
 
-    .price-amount { font-size: 1.12rem; font-weight: 700; }
+    .price-amount {
+      font-size: 1.12rem;
+      font-weight: 700;
+    }
 
-    .price-subnote { margin-top: 0.55rem; font-size: 0.78rem; opacity: 0.9; }
+    .price-subnote {
+      margin-top: 0.55rem;
+      font-size: 0.78rem;
+      opacity: 0.9;
+    }
 
     .pricing-footer-note {
       margin-top: 0.95rem;
@@ -349,7 +387,10 @@
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
     }
 
-    .contact-card h2 { font-size: 1.05rem; margin-bottom: 0.9rem; }
+    .contact-card h2 {
+      font-size: 1.05rem;
+      margin-bottom: 0.9rem;
+    }
 
     .contact-aside {
       display: flex;
@@ -359,7 +400,9 @@
       color: var(--text-muted);
     }
 
-    .contact-aside strong { color: var(--text-main); }
+    .contact-aside strong {
+      color: var(--text-main);
+    }
 
     .contact-badge {
       margin-top: 0.3rem;
@@ -370,6 +413,8 @@
       border: 1px solid #facc15;
       color: #854d0e;
     }
+
+    /* FOOTER */
 
     .footer {
       margin-top: 2.5rem;
@@ -397,17 +442,22 @@
         grid-template-columns: minmax(0, 1fr);
       }
 
-      .hero-inner { gap: 2rem; }
+      .hero-inner {
+        gap: 2rem;
+      }
 
       .nav-inner {
         flex-direction: column;
         align-items: flex-start;
       }
 
-      .nav-links { flex-wrap: wrap; }
+      .nav-links {
+        flex-wrap: wrap;
+      }
     }
   </style>
 </head>
+
 <body>
   <!-- NAV -->
   <header class="nav">
@@ -415,6 +465,7 @@
       <div class="nav-brand">
         <img src="logo-aflestur.png" alt="Aflestur.is" class="nav-logo" />
       </div>
+
       <nav class="nav-links">
         <a href="#um-thjonustuna">Um þjónustuna</a>
         <a href="#okuriti-kort">Ökuriti & kort</a>
@@ -599,7 +650,7 @@
         <p class="section-lead">
           Sendu okkur einfaldan tölvupóst með upplýsingum um reksturinn,
           fjölda bíla og ökumanna. Við svörum fyrirspurnum eins fljótt og
-          auðið er og finnum síðan hentugan
+          auðið er, yfirleitt innan 24 klukkustunda, og finnum síðan hentugan
           tíma fyrir aflestur í samráði við þig.
         </p>
         <a
